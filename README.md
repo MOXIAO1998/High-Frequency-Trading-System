@@ -2,7 +2,7 @@
 
 ## 1. Overview of System Architecture
 
-This project implements a small event-driven trading system core in C++. It is not a market simulator and not an exchange. Its purpose is to maintain a local view of market data, track submitted orders, and react to feed updates through a simple trading strategy. :contentReference[oaicite:0]{index=0}
+This project implements a small event-driven trading system core in C++. It is not a market simulator and not an exchange. Its purpose is to maintain a local view of market data, track submitted orders, and react to feed updates through a simple trading strategy.
 
 The system is organized into the following components:
 
@@ -52,13 +52,13 @@ Its responsibilities are:
 
 So the overall system flow is:
 
-`sample_feed.txt` → `feed_parser` → `MarketSnapshot` / `OrderManager` → strategy logic in `main.cpp` :contentReference[oaicite:1]{index=1}
+`sample_feed.txt` → `feed_parser` → `MarketSnapshot` / `OrderManager` → strategy logic in `main.cpp` 
 
 ---
 
 ## 2. Explanation of How Memory Is Managed Safely
 
-Memory in this project is managed using modern C++ RAII principles and smart pointers. The goal is to avoid manual memory management and let object lifetimes be handled automatically. This matches the project requirement that memory management must be explicit, responsible, and modern. :contentReference[oaicite:2]{index=2}
+Memory in this project is managed using modern C++ RAII principles and smart pointers. The goal is to avoid manual memory management and let object lifetimes be handled automatically. This matches the project requirement that memory management must be explicit, responsible, and modern.
 
 ### Price Levels
 Each `PriceLevel` is stored in a `std::unique_ptr` inside the bid/ask containers.
@@ -87,7 +87,7 @@ The program follows these rules:
 - use RAII to manage resource lifetimes
 - store heap-allocated objects in `std::unique_ptr`
 - avoid manual `new` and `delete` in normal project logic
-- remove inactive objects from containers when they are no longer needed :contentReference[oaicite:3]{index=3}
+- remove inactive objects from containers when they are no longer needed
 
 Raw pointers such as the return value of `get_best_bid()` or `get_best_ask()` are only used as temporary non-owning observer pointers. Ownership always remains with the `std::unique_ptr` inside the containers.
 

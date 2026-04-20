@@ -111,7 +111,7 @@ src/main.cpp src/market_snapshot.cpp src/order_manager.cpp \
 ```bash
 ./trading_system
 ```
-If sample_feed.txt is located in the data folder, make sure the file path in main.cpp matches the actual project structure, for example:
+If `sample_feed.txt` is located in the data folder, make sure the file path in main.cpp matches the actual project structure, for example:
 ```bash
 load_feed("data/sample_feed.txt")
 ```
@@ -189,4 +189,4 @@ A clean run should finish without AddressSanitizer errors such as:
 - double-free
 
 
-Because this project uses RAII and std::unique_ptr to manage dynamic objects, inactive price levels and completed orders are automatically deallocated when erased from their containers. This is the main reason the design is memory-safe.
+Because this project uses RAII and `std::unique_ptr` to manage dynamic objects, inactive price levels and completed orders are automatically deallocated when erased from their containers. This is the main reason the design is memory-safe.
